@@ -7,7 +7,7 @@ Linux(x64)でのみ動作確認しています
 Windows/Mac版もビルドしていますが未検証です
 
 ## インストール
-[リリースページ](https://github.com/7ka-Hiira/concurrent-world-desktop/releases)からダウンロードできます
+[リリースページ](https://github.com/7ka-Hiira/concurrent-world-desktop/releases/latest)からダウンロードできます
 
 ## ビルド
 pnpmが必要です
