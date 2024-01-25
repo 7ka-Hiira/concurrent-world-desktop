@@ -1,11 +1,10 @@
 [package]
-name = "app"
+name = "concurrent-world-desktop"
 version = "0.1.0"
-description = "A Tauri App"
-authors = [""]
+description = "Concurrent World for Desktop"
 license = ""
 repository = ""
-default-run = "app"
+default-run = "concurrent-world-desktop"
 edition = "2021"
 rust-version = "1.60"
 
@@ -17,7 +16,7 @@ tauri-build = { version = "1.5.1", features = [] }
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.5.4", features = ["api-all"] }
+tauri = { version = "1.5.4", features = ["shell-open"] }
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.
