@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-  ccworld_desktop::run();
+    ccworld_desktop::run();
 }
