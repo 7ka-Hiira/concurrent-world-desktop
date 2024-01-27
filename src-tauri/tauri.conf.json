@@ -18,8 +18,7 @@
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
-      "copyright": "",
+      "category": "SocialNetworking",
       "deb": {
         "depends": []
       },
