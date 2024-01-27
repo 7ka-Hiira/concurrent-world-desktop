@@ -10,12 +10,15 @@
     "productName": "concurrent-world-desktop",
     "version": "0.2.0"
   },
-  "tauri": {
-    "allowlist": {
-      "shell": {
-        "open": true
-      }
+  "plugins": {
+    "shell": {
+      "open": true
     },
+    "updater": {
+      "endpoints": []
+    }
+  },
+  "tauri": {
     "bundle": {
       "active": true,
       "category": "SocialNetworking",
@@ -42,6 +45,9 @@
       "resources": [],
       "shortDescription": "",
       "targets": "all",
+      "updater": {
+        "active": false
+      },
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
@@ -50,9 +56,6 @@
     },
     "security": {
       "csp": null
-    },
-    "updater": {
-      "active": false
     },
     "windows": [
       {
