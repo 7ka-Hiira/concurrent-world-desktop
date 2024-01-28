@@ -18,6 +18,15 @@
       "endpoints": [
         "https://update-apps.hiira.dev/ccworld/update.json?target={{target}}&version={{current_version}}&arch={{arch}}"
       ]
+    },
+    "cli": {
+      "description": "Concurrent World Desktop",
+      "args": [
+        {
+          "name": "skip-update",
+          "description": "Skip checking for updates"
+        }
+      ]
     }
   },
   "tauri": {
