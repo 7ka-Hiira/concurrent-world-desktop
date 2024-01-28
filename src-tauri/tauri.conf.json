@@ -32,6 +32,9 @@
   "tauri": {
     "bundle": {
       "active": true,
+      "appimage": {
+        "bundleMediaFramework": true
+      },
       "category": "SocialNetworking",
       "deb": {
         "depends": []
@@ -65,8 +68,7 @@
       },
       "windows": {
         "certificateThumbprint": null,
-        "digestAlgorithm": "sha256",
-        "timestampUrl": ""
+        "digestAlgorithm": "sha256"
       }
     },
     "security": {
