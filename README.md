@@ -2,7 +2,7 @@
 [concurrent-world](https://github.com/totegamma/concurrent-world)をデスクトップアプリにしたものです
 
 ## 動作環境
-Linux AppImage(x64)のみ動作確認をしています
+Linux(x64)でのみ動作確認しています
 
 Windows/Mac版もビルドしていますが未検証です
 
