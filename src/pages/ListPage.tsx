@@ -53,8 +53,12 @@ export function ListPage(): JSX.Element {
     }, [tab])
 
     const streamIDs = useMemo(() => {
-        return [...(lists[id]?.streams ?? []), lists[id]?.userStreams.map((e) => e.streamID) ?? []].flat()
-    }, [id, lists])
+        return [
+            id === 'home' ? client?.user?.userstreams?.payload.body.homeStream ?? [] : [],
+            ...(lists[id]?.streams ?? []),
+            lists[id]?.userStreams.map((e) => e.streamID) ?? []
+        ].flat()
+    }, [id, lists, client?.user?.userstreams?.payload.body.homeStream])
 
     if (!lists[id]) {
         return (
@@ -110,6 +114,8 @@ export function ListPage(): JSX.Element {
                     }}
                     textColor="secondary"
                     indicatorColor="secondary"
+                    variant="scrollable"
+                    scrollButtons={false}
                 >
                     {Object.keys(lists)
                         .filter((e) => lists[e].pinned)
@@ -124,6 +130,7 @@ export function ListPage(): JSX.Element {
                                         timelineRef.current?.scrollToIndex(0, { align: 'start', smooth: true })
                                     }
                                 }}
+                                sx={{ fontSize: '0.9rem', padding: '0', textTransform: 'none' }}
                             />
                         ))}
                 </Tabs>
