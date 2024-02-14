@@ -1,74 +1,52 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "productName": "Concurrent World Desktop",
+  "version": "1.1.5",
+  "identifier": "dev.hiira.concurrent-world-desktop",
   "build": {
     "beforeBuildCommand": "pnpm build",
     "beforeDevCommand": "pnpm dev",
-    "devPath": "http://localhost:5173",
-    "distDir": "../dist"
-  },
-  "package": {
-    "productName": "Concurrent World Desktop",
-    "version": "1.1.5"
+    "devUrl": "http://localhost:5173",
+    "frontendDist": "../dist"
   },
   "plugins": {
     "shell": {
       "open": true
-    },
-    "updater": {
-      "endpoints": [
-        "https://update-apps.hiira.dev/ccworld/update.json?target={{target}}&version={{current_version}}&arch={{arch}}"
-      ]
-    },
-    "cli": {
-      "description": "Concurrent World Desktop",
-      "args": [
-        {
-          "name": "skip-update",
-          "description": "Skip checking for updates"
-        }
-      ]
     }
   },
-  "tauri": {
-    "bundle": {
-      "active": true,
-      "category": "SocialNetworking",
-      "deb": {
+  "bundle": {
+    "active": true,    "category": "SocialNetworking",
+    "externalBin": [],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "longDescription": "",
+    "resources": [],
+    "shortDescription": "",
+    "targets": "all",
+    "macOS": {
+      "entitlements": null,
+      "exceptionDomain": "",
+      "frameworks": [],
+      "providerShortName": null,
+      "signingIdentity": null
+    },
+    "linux": {
+      "deb" : {
         "depends": []
-      },
-      "externalBin": [],
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ],
-      "identifier": "dev.hiira.concurrent-world-desktop",
-      "longDescription": "",
-      "macOS": {
-        "entitlements": null,
-        "exceptionDomain": "",
-        "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
-      },
-      "resources": [],
-      "shortDescription": "",
-      "targets": "all",
-      "updater": {
-        "active": true,
-        "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEZFM0VEM0E4NzZENDQyNzEKUldSeFF0UjJxTk0rL3E0ZXlhYkQ5d3R0MWoxRUN2cnloVTJ5MFVMTXpzdnJRUkJlMVdQYUxGdFIK",
-        "windows": {
-          "installMode": "basicUi"
-        }
-      },
-      "windows": {
-        "certificateThumbprint": null,
-        "digestAlgorithm": "sha256",
-        "timestampUrl": ""
       }
     },
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": ""
+    }
+  },
+  "app": {
     "security": {
       "csp": null
     },
