@@ -80,7 +80,7 @@ export const InspectorProvider = (props: InspectorProps): JSX.Element => {
             }
         }
 
-        let previousKey: string | null = null
+        let previousKeyParent: string | null = null
 
         let valid
         let reason
@@ -96,7 +96,7 @@ export const InspectorProvider = (props: InspectorProps): JSX.Element => {
                 break
             }
 
-            if (previousKey && key.parent !== previousKey) {
+            if (previousKeyParent && key.id !== previousKeyParent) {
                 valid = false
                 reason = 'keychain is not linear'
                 break
@@ -126,7 +126,7 @@ export const InspectorProvider = (props: InspectorProps): JSX.Element => {
                 }
             }
 
-            previousKey = keyResolution[i].id
+            previousKeyParent = keyResolution[i].parent
         }
 
         if (valid === undefined) {
