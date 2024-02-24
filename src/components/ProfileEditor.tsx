@@ -1,19 +1,19 @@
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { useEffect, useState } from 'react'
-import { type ProfileSchema } from '@concurrent-world/client'
+import { type CoreCharacter, type ProfileSchema } from '@concurrent-world/client'
 import Button from '@mui/material/Button'
 import { useApi } from '../context/api'
 import { CCAvatar } from './ui/CCAvatar'
-import Background from '../resources/defaultbg.png'
 import { alpha, useTheme } from '@mui/material'
 
 import { useTranslation } from 'react-i18next'
 import { MediaInput } from './ui/MediaInput'
+import { CCWallpaper } from './ui/CCWallpaper'
 
 interface ProfileEditorProps {
     initial?: ProfileSchema
-    onSubmit?: (profile: ProfileSchema) => void
+    onSubmit?: (profile: CoreCharacter<ProfileSchema>) => void
     id?: string
 }
 
@@ -49,16 +49,14 @@ export function ProfileEditor(props: ProfileEditorProps): JSX.Element {
     }, [props.initial])
 
     return (
-        <Box
-            sx={{
+        <CCWallpaper
+            innerSx={{
                 display: 'flex',
                 flexDirection: 'row',
-                gap: '15px',
-                backgroundImage: `url(${banner || Background})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                padding: '15px'
+                gap: 2,
+                padding: 2
             }}
+            override={banner}
         >
             <CCAvatar
                 avatarURL={avatar}
@@ -120,6 +118,6 @@ export function ProfileEditor(props: ProfileEditorProps): JSX.Element {
                     {props.id === undefined ? t('createNew') : t('update')}
                 </Button>
             </Box>
-        </Box>
+        </CCWallpaper>
     )
 }
