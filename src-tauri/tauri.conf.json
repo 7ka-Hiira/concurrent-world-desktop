@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "productName": "Concurrent World Desktop",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "identifier": "dev.hiira.concurrent-world-desktop",
   "build": {
     "beforeBuildCommand": "pnpm build",
