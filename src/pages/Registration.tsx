@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { useEffect, useState } from 'react'
-import ApiProvider from '../context/api'
+import ApiProvider from '../context/ClientContext'
 import { Fade, Paper } from '@mui/material'
 import { usePersistent } from '../hooks/usePersistent'
 import { type Identity, generateIdentity, jumpToDomainRegistration } from '../util'
@@ -71,20 +71,17 @@ export function Registration(): JSX.Element {
 
         client?.api
             .getCharacter<DomainProfileSchema>(host.ccid, Schemas.domainProfile)
-            .then((profile: CoreCharacter<DomainProfileSchema> | null | undefined) => {
+            .then((profile: Array<CoreCharacter<DomainProfileSchema>> | null | undefined) => {
                 console.log('domainprofile:', profile)
+                const domainProfile = profile?.[0]?.payload.body
                 const list = {
                     home: {
                         label: 'Home',
                         pinned: true,
-                        streams: profile?.payload.body.defaultFollowingStreams
-                            ? profile.payload.body.defaultFollowingStreams
-                            : [],
+                        streams: domainProfile?.defaultFollowingStreams ? domainProfile?.defaultFollowingStreams : [],
                         userStreams: [],
                         expanded: false,
-                        defaultPostStreams: profile?.payload.body.defaultPostStreams
-                            ? profile.payload.body.defaultPostStreams
-                            : []
+                        defaultPostStreams: domainProfile?.defaultPostStreams ? domainProfile?.defaultPostStreams : []
                     }
                 }
 

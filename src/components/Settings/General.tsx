@@ -13,14 +13,14 @@ import {
 import { usePreference } from '../../context/PreferenceContext'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import { useApi } from '../../context/api'
+import { useClient } from '../../context/ClientContext'
 import { useEffect, useState } from 'react'
 import { useSnackbar } from 'notistack'
 import { IssueJWT } from '@concurrent-world/client'
 import { useTranslation } from 'react-i18next'
 
 export const GeneralSettings = (): JSX.Element => {
-    const client = useApi()
+    const { client } = useClient()
     const [showPrivateKey, setShowPrivateKey] = useState(false)
     const [invitationCode, setInvitationCode] = useState<string>('')
 
@@ -59,6 +59,7 @@ export const GeneralSettings = (): JSX.Element => {
                     <MenuItem value={'en'}>English</MenuItem>
                     <MenuItem value={'ja'}>日本語</MenuItem>
                     <MenuItem value={'kr'}>한국어 (translated by @Alternative)</MenuItem>
+                    <MenuItem value={'th'}>ภาษาไทย</MenuItem>
                 </Select>
             </Box>
             <Box>

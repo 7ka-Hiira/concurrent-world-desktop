@@ -1,7 +1,7 @@
 import { Box, Collapse, Divider, Tab, Tabs } from '@mui/material'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useApi } from '../context/api'
+import { useLocation, useParams } from 'react-router-dom'
+import { useClient } from '../context/ClientContext'
 import { Timeline } from '../components/Timeline'
 import { type User } from '@concurrent-world/client'
 import { type VListHandle } from 'virtua'
@@ -10,7 +10,7 @@ import AlternateEmailIcon from '@mui/icons-material/AlternateEmail'
 import { Profile } from '../components/Profile'
 
 export function EntityPage(): JSX.Element {
-    const client = useApi()
+    const { client } = useClient()
     const { id } = useParams()
 
     const [user, setUser] = useState<User | null | undefined>(null)
@@ -20,6 +20,9 @@ export function EntityPage(): JSX.Element {
     const [showHeader, setShowHeader] = useState(false)
 
     const [tab, setTab] = useState(0)
+
+    const path = useLocation()
+    const subCharacterID = path.hash.replace('#', '')
 
     useEffect(() => {
         if (!id) return
@@ -75,7 +78,14 @@ export function EntityPage(): JSX.Element {
                 }}
                 header={
                     <>
-                        <Profile user={user} id={id} />
+                        <Profile
+                            user={user}
+                            id={id}
+                            overrideSubCharacterID={subCharacterID}
+                            onSubCharacterClicked={(id) => {
+                                window.location.hash = id
+                            }}
+                        />
                         <Tabs
                             value={tab}
                             onChange={(_, index) => {

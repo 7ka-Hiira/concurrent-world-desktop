@@ -1,26 +1,26 @@
 import { Box, Typography, Link, Tooltip, Menu, IconButton } from '@mui/material'
 import { TimeDiff } from '../ui/TimeDiff'
 import { Link as RouterLink } from 'react-router-dom'
-import { useContext, useMemo, useState } from 'react'
-import { ApplicationContext } from '../../App'
+import { useMemo, useState } from 'react'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import { type Message, type ReplyMessageSchema, type SimpleNoteSchema } from '@concurrent-world/client'
 
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
+import { useClient } from '../../context/ClientContext'
 
 export interface MessageHeaderProps {
     message: Message<SimpleNoteSchema | ReplyMessageSchema>
+    usernameOverride?: string
     additionalMenuItems?: JSX.Element | JSX.Element[]
 }
 
 export const MessageHeader = (props: MessageHeaderProps): JSX.Element => {
-    const appData = useContext(ApplicationContext)
-
+    const { client } = useClient()
     const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null)
 
     const myAck = useMemo(() => {
-        return appData.acklist.find((ack) => ack.ccid === props.message.author)
-    }, [props.message, appData.acklist])
+        return client.ackings?.find((ack) => ack.ccid === props.message.author)
+    }, [props.message, client])
 
     return (
         <Box
@@ -43,7 +43,8 @@ export const MessageHeader = (props: MessageHeaderProps): JSX.Element => {
                         fontSize: { xs: '0.9rem', sm: '0.95rem' }
                     }}
                 >
-                    {props.message.payload.body.profileOverride?.username ||
+                    {props.usernameOverride ||
+                        props.message.payload.body.profileOverride?.username ||
                         props.message.authorUser?.profile?.payload.body.username ||
                         'anonymous'}
                 </Typography>

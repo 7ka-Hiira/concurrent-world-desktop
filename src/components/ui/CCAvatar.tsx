@@ -2,11 +2,13 @@ import { Avatar, Badge, type SxProps } from '@mui/material'
 import BoringAvatar from 'boring-avatars'
 
 export interface CCAvatarProps {
+    circle?: boolean
     sx?: SxProps
     alt?: string
     avatarURL?: string
     avatarOverride?: string
     identiconSource?: string
+    onBadgeClick?: () => void
 }
 
 export const CCAvatar = (props: CCAvatarProps): JSX.Element => {
@@ -29,17 +31,18 @@ export const CCAvatar = (props: CCAvatarProps): JSX.Element => {
                     />
                 )
             }
+            onClick={() => props.onBadgeClick?.()}
         >
             <Avatar
                 alt={props.alt}
-                src={props.avatarOverride || props.avatarURL}
+                src={props.avatarOverride ?? props.avatarURL}
                 sx={{
                     ...props.sx,
-                    borderRadius: 1
+                    borderRadius: props.circle ? undefined : 1
                 }}
-                variant="square"
+                variant={props.circle ? 'circular' : 'square'}
             >
-                <BoringAvatar square name={props.identiconSource} variant="beam" size={1000} />
+                <BoringAvatar square={!props.circle} name={props.identiconSource} variant="beam" size={1000} />
             </Avatar>
         </Badge>
     )
