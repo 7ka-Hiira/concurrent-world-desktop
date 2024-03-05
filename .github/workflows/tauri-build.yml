@@ -3,7 +3,7 @@ name: 'publish'
 on:
   push:
     branches:
-      - release
+      - action-test
 
 env:
   TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
@@ -38,6 +38,9 @@ jobs:
 
       - name: install pnpm
         run: npm install -g pnpm
+
+      - name: install tauri-cli
+        run: npm install -g @tauri-apps/cli
 
       - name: install frontend dependencies
         run: pnpm install
