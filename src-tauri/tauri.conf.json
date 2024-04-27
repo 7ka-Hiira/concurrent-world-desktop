@@ -1,6 +1,6 @@
 {
   "productName": "Concurrent World Desktop",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "identifier": "dev.hiira.concurrent-world-desktop",
   "build": {
     "frontendDist": "../dist",
